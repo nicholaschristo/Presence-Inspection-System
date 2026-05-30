@@ -1,90 +1,200 @@
-# ROI-Based Presence Inspection System
+# Presence and Orientation Inspection System
 
 ## Overview
 
-This project is a real-time industrial-style machine vision inspection system developed using Python and OpenCV.
+This project implements a real-time machine vision inspection system using OpenCV for industrial-style presence verification and orientation analysis.
 
-The system detects the presence of an object inside a predefined Region of Interest (ROI) and provides an industrial-style OK/NG status output.
+The system captures live video from a USB camera, monitors a predefined inspection zone (ROI), detects objects placed inside the inspection area, calculates their orientation, and classifies them as Horizontal, Vertical, or Tilted.
 
-The project simulates the basic workflow used in industrial automation and machine vision applications such as:
-
-- Presence/Absence Inspection
-- Conveyor Inspection Systems
-- Vision-Based Triggering
-- Automated Quality Inspection
-- Industrial Automation Integration
+The project simulates a basic machine vision inspection application commonly used in manufacturing, assembly verification, and quality control systems.
 
 ---
 
-# Features
+## Features
 
-✅ Real-time USB camera inspection  
-✅ ROI (Region of Interest) based detection  
-✅ Threshold-based object segmentation  
-✅ Contour detection and filtering  
-✅ Noise reduction using Gaussian Blur  
-✅ Shape and area filtering  
-✅ Industrial-style OK / NG logic  
-✅ Real-time visualization with bounding boxes  
+✅ Real-time USB camera acquisition
+
+✅ ROI (Region of Interest) based inspection
+
+✅ Grayscale image preprocessing
+
+✅ Gaussian noise reduction
+
+✅ Binary threshold segmentation
+
+✅ Contour extraction and filtering
+
+✅ Presence / Absence detection
+
+✅ Angle measurement using OpenCV minAreaRect()
+
+✅ Orientation classification
+
+✅ Horizontal detection
+
+✅ Vertical detection
+
+✅ Tilted detection
+
+✅ Industrial OK / NG decision logic
+
+✅ Real-time visual feedback
 
 ---
 
-# Technologies Used
+## Technologies Used
 
 - Python
 - OpenCV
+- NumPy
+- USB Camera
 - VS Code
 
 ---
 
-# Project Workflow
+## System Workflow
 
-## 1. Image Acquisition
-The system captures live video frames from a USB webcam.
-
-## 2. ROI Selection
-A fixed inspection region is defined to simulate industrial inspection zones.
-
-## 3. Preprocessing
-The captured frame undergoes:
-- Grayscale conversion
-- Gaussian Blur filtering
-
-to improve image stability and reduce noise.
-
-## 4. Threshold Segmentation
-Binary inverse thresholding is applied to separate the object from the background.
-
-## 5. Contour Detection
-Contours are extracted from the threshold image.
-
-## 6. Contour Filtering
-Contours are filtered based on:
-- Area
-- Width
-- Height
-
-to reduce false detections.
-
-## 7. Inspection Logic
-If a valid object is detected inside the ROI:
-- STATUS = OK
-
-Otherwise:
-- STATUS = NG
+```text
+Camera Feed
+      ↓
+ROI Selection
+      ↓
+Grayscale Conversion
+      ↓
+Gaussian Blur
+      ↓
+Thresholding
+      ↓
+Contour Detection
+      ↓
+Angle Measurement
+      ↓
+Orientation Classification
+      ↓
+OK / NG Decision
+```
 
 ---
 
-# Folder Structure
+## Orientation Classification Logic
+
+The detected object's orientation is classified based on the angle obtained from OpenCV's `minAreaRect()` function.
+
+| Angle Range | Classification |
+|------------|---------------|
+| -20° to 20° | Horizontal |
+| 70° to 110° | Vertical |
+| Others | Tilted |
+
+---
+
+## Project Structure
 
 ```text
-PresenceInspectionSystem/
+Presence-And-Orientation-Inspection-System
 │
-├── src/
+├── src
 │   └── main.py
 │
-├── screenshots/
+├── results
+│   ├── horizontal_detection.png
+│   ├── vertical_detection.png
+│   ├── tilted_detection.png
+│   └── no_object.png
 │
-├── demo/
+├── demo
+│   └── demo_video.mp4
 │
 └── README.md
+```
+
+---
+
+## Test Objects
+
+The system was tested using:
+
+- Wall Plug
+- Fasteners
+- Small Industrial Components
+
+These objects were chosen to simulate components commonly inspected in manufacturing and assembly environments.
+
+---
+
+## Sample Results
+
+### Horizontal Detection
+
+- Status: OK
+- Orientation: HORIZONTAL
+
+### Vertical Detection
+
+- Status: OK
+- Orientation: VERTICAL
+
+### Tilted Detection
+
+- Status: OK
+- Orientation: TILTED
+
+### No Object Present
+
+- Status: NG
+- Orientation: NONE
+
+---
+
+## Industrial Applications
+
+This project demonstrates concepts used in:
+
+- Assembly Verification
+- Component Presence Detection
+- Orientation Inspection
+- Quality Control
+- Machine Vision Systems
+- Automated Inspection Stations
+- Smart Manufacturing
+
+---
+
+## Skills Demonstrated
+
+- Machine Vision Fundamentals
+- Image Processing
+- Industrial Inspection Logic
+- Contour Analysis
+- Angle Measurement
+- ROI-Based Processing
+- Real-Time Camera Applications
+- OpenCV Development
+
+---
+
+## Future Improvements
+
+- PLC Communication (Modbus TCP / Ethernet/IP)
+- Reject Mechanism Simulation
+- Defect Detection
+- OCR / OCV Inspection
+- AI-Based Object Detection
+- Vision-Guided Robotics Integration
+- OMRON Vision System Implementation
+- Conveyor-Based Inspection
+
+---
+
+## Author
+
+Nicholas Christo
+
+B.Tech Computer Science Engineering (AI & ML)
+
+Interested in:
+- Machine Vision
+- Industrial Automation
+- Robotics
+- Artificial Intelligence
+- Vision-Guided Systems
